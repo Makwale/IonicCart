@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 import { CartService } from '../cart.service';
 import { ProductService } from '../product.service';
@@ -11,17 +12,25 @@ import { ProductService } from '../product.service';
 export class HomePage {
 	products;
   constructor(private cartService: CartService,
-  	private productService: ProductService) {
+  	private productService: ProductService, private router: Router) {
   	this.getProducts();
   }
 
   public addToCart(product){
   	this.cartService.addItem(product);
-  	console.log(this.cartService.getItemList())
+
   }
 
   public getProducts(){
   	this.products = this.productService.getProducts();
+  }
+
+  navigateToCart(){
+    this.router.navigateByUrl("cart");
+  }
+
+  getTotalItems(){
+    return this.cartService.getTotalItems();
   }
 
 }

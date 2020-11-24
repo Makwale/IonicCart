@@ -1,19 +1,28 @@
 <ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      Home
-    </ion-title>
-  </ion-toolbar>
+    <ion-toolbar>
+        <ion-title>
+            Home
+        </ion-title>
+        <ion-buttons slot="end">
+            <ion-button (click)="navigateToCart()">
+                <ion-icon name="cart"></ion-icon>
+            </ion-button>
+            <ion-badge color="primary" slot="end">{{getTotalItems()}}</ion-badge>
+        </ion-buttons>
+
+
+    </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-item *ngFor="let product of products">
-    <ion-avatar slot="start">
-      <img src="{{product.getImgURL()}}">
-    </ion-avatar>
+    <ion-item *ngFor="let product of products">
+        <ion-avatar slot="start">
+            <img src="{{product.getImgURL()}}">
+        </ion-avatar>
 
-    <ion-label>{{product.getName()}}</ion-label>
-    <ion-button (click)="addToCart(product)" slot="end">Add to cart</ion-button>
-  </ion-item>
+        <ion-label>{{product.getName()}}</ion-label><br>
+        <h5><b>R25.00</b></h5>
+        <ion-icon name="bag-add" (click)="addToCart(product)"></ion-icon>
+    </ion-item>
 
 </ion-content>
