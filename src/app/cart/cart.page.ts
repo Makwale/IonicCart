@@ -28,7 +28,7 @@ export class CartPage implements OnInit {
   }
 
   delete(item: Item){
-
+    alert(item.getId());
     this.cartService.deleteItem(item.getId());
 
   }

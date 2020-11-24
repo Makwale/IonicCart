@@ -20,6 +20,9 @@ export class Product{
 	public getUnitPrice(){return this.unitPrice;}
 
 	equal(product: Product): boolean{
-		return this.id == product.getId();
+		if(this.id === product.getId()){
+			return true;
+		}
+		return false;
 	}
 }

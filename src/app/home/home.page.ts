@@ -17,7 +17,9 @@ export class HomePage {
   }
 
   public addToCart(product){
-  	this.cartService.addItem(product);
+  	if(!this.cartService.equal(product)){
+	  this.cartService.addItem(product);
+	}
 
   }
 

@@ -10,30 +10,12 @@ export class CartService {
  
 	private itemList: Item[] = [];
 	itemId = 0;
-	totalItems = 0;
   constructor() { }
 
   public addItem(product: Product ): void{
 
-	if(this.itemList.length == 0){
-			this.itemList.push(new Item(this.itemId + 1 ,product, 1));
-			this.itemId++;
-			console.log(this.itemId);
-			this.totalItems++;
-			alert("Item added");
-			
-	}else if(this.itemList.length > 0){
-		  for(let item of this.itemList){
-			  if(item.getProduct().equal(product) == false){
-				this.itemList.push(new Item(this.itemId ,product, 1));
-				this.itemId++;
-				this.totalItems++
-				console.log(this.itemId);
-				break;
-			  }
-		  }
-	}
-
+  	this.itemId++;
+	this.itemList.push(new Item(this.itemId,product));
 	
   }
 
@@ -60,17 +42,27 @@ export class CartService {
   public getItemList(): Item[]{return this.itemList}
 
   getTotalItems(){
-	  return this.totalItems;
+	  return this.itemList.length;
   }
 
   deleteItem(id) {
 		
-		console.log(this.itemList[id]);
+		this.itemList.splice(id - 1, 1);
 		
+		for(let index = 0; index  <= this.itemList.length; index++){
+			this.itemId = index;
+			this.itemList[index].setId(this.itemId + 1);
+		}
+	}
 
-		// for (let index = 0; index  < this.itemList.length; index++){
-		// 	this.itemList[index].setId(index + 1);
-		// }
+	equal(product){
+		for(let index = 0; index < this.itemList.length; index++){
+			if(this.itemList[index].getProduct().equal(product)){
+			  	alert("Item exist");
+				return true;
+			}
+		 }
+		return false;
 	}
 
 }

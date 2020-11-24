@@ -7,10 +7,10 @@ export class Item{
 	product: Product;
 	sub_total_price?:number;
 
-	constructor(id,product, quantity){
+	constructor(id, product){
 		this.id = id;
 		this.product = product;
-        this.quantity = quantity;
+        this.quantity = 1;
     }
     
 	getId(){return this.id}
@@ -31,4 +31,6 @@ export class Item{
 	getProduct(){
 		return this.product;
 	}
+
+
 }
