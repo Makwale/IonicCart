@@ -25,7 +25,7 @@ export class ProductService {
   		25 )];
   }
 
-  public getProducts(){return this.productList;}
+  public getProducts(): Product[]{return this.productList;}
 }
 
 

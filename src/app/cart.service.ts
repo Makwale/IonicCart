@@ -9,7 +9,7 @@ import { Product } from './models/product.model';
 export class CartService {
  
 	private itemList: Item[] = [];
-	itemId = 0;
+	private itemId = 0;
   constructor() { }
 
   public addItem(product: Product ): void{
@@ -19,7 +19,7 @@ export class CartService {
 	
   }
 
-  incrementQnty(id){
+  public incrementQnty(id: number): void{
 	for(let item of this.itemList){
 		if(item.getId() === id){
 			item.incrementQty();
@@ -28,7 +28,7 @@ export class CartService {
 	}
   }
 
-  decrementQnty(id) {
+  public decrementQnty(id:number): void{
     for(let item of this.itemList){
 		if(item.getId() === id){
 			if(item.getQty() > 1){
@@ -41,21 +41,24 @@ export class CartService {
 
   public getItemList(): Item[]{return this.itemList}
 
-  getTotalItems(){
-	  return this.itemList.length;
-  }
+  public getTotalItems(): number{ return this.itemList.length;}
 
-  deleteItem(id) {
+  public deleteItem(id: number): void {
 		
 		this.itemList.splice(id - 1, 1);
-		
-		for(let index = 0; index  <= this.itemList.length; index++){
-			this.itemId = index;
-			this.itemList[index].setId(this.itemId + 1);
+		if(this.itemList.length > 0){
+			console.log("Inside");
+			for(let index = 0; index  <= this.itemList.length; index++){
+				if(this.itemList[index] != undefined){
+					this.itemId = index;
+					this.itemList[index].setId(this.itemId + 1);
+				}
+				
+			}
 		}
 	}
 
-	equal(product){
+	public equal(product: Product): boolean{
 		for(let index = 0; index < this.itemList.length; index++){
 			if(this.itemList[index].getProduct().equal(product)){
 			  	alert("Item exist");

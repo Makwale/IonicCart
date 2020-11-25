@@ -1,8 +1,10 @@
+import { NumberValueAccessor } from '@angular/forms';
+
 export class Product{
-	id:number;
-	name:string;
-	imgURL:string;
-	unitPrice:number;
+	private id:number;
+	private name:string;
+	private imgURL:string;
+	private unitPrice:number;
 
 	constructor(id, name, imgURL, unitPrice){
 		this.id = id;
@@ -11,15 +13,15 @@ export class Product{
 		this.unitPrice = unitPrice;
 	}
 
-	public getId(){return this.id;}
+	public getId(): number{return this.id;}
 
-	public getName(){return this.name;}
+	public getName(): string{return this.name;}
 
-	public getImgURL(){return this.imgURL;}
+	public getImgURL(): string{return this.imgURL;}
 
-	public getUnitPrice(){return this.unitPrice;}
+	public getUnitPrice(): number{return this.unitPrice;}
 
-	equal(product: Product): boolean{
+	public equal(product: Product): boolean{
 		if(this.id === product.getId()){
 			return true;
 		}

@@ -2,10 +2,10 @@ import { ThrowStmt } from '@angular/compiler';
 import { Product } from './product.model';
 
 export class Item{
-	id:number;
-	quantity:number;
-	product: Product;
-	sub_total_price?:number;
+	private id:number;
+	private quantity:number;
+	private product: Product;
+	private sub_total_price?:number;
 
 	constructor(id, product){
 		this.id = id;
@@ -13,22 +13,23 @@ export class Item{
         this.quantity = 1;
     }
     
-	getId(){return this.id}
+	public getId(): number{return this.id}
 	
-	setId(id){
+	public setId(id: number): void{
 		this.id = id;
 	}
 
-    getQty(){return this.quantity}
+    public getQty(): number{return this.quantity}
 
-    incrementQty(){
+    public incrementQty() :void {
      this.quantity++;   
     }
 
-    decrementQty(){
+    public decrementQty(): void{
         this.quantity--;
-    }
-	getProduct(){
+	}
+	
+	public getProduct(): Product{
 		return this.product;
 	}
 
